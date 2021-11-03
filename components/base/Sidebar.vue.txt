@@ -1,0 +1,161 @@
+<template>
+  <a-layout-sider
+    :reverseArrow="true"
+    collapsible
+    :theme="theme"
+    breakpoint="md"
+    collapsed-width="3em"
+    style="min-height: 90v"
+  >
+    <div class="logo">
+      <router-link to="/cp1">
+        <img src="/img/logo.png" style="width: 90%; max-width: 120px" class="mx-auto" />
+      </router-link>
+    </div>
+    <div v-if="currentUser && currentUser.uid" class="profile">
+      <div class="info">
+        Welcome
+        {{ currentUser?.email }}
+      </div>
+      <a-button class="mt-2 mb-2 max-w-full" type="primary" size="small" @click="logout">
+        <span class="hidden md:block">Log-out</span>
+        <LogoutOutlined />
+      </a-button>
+    </div>
+    <div v-if="!currentUser || !currentUser.uid" class="profile">
+      <router-link to="/login">Login</router-link>
+    </div>
+
+    <a-menu
+      class="mt-2"
+      v-if="currentUser && currentUser.uid"
+      :theme="theme"
+      mode="inline"
+      v-model:open-keys="openMenus"
+      :selected-keys="selectedMenus"
+      @click="menuClick"
+    >
+      <a-menu-item key="orders">
+        <DollarOutlined />
+
+        <router-link to="/cp1/orders" class="member_menu menu_course">Orders</router-link>
+      </a-menu-item>
+
+      <a-menu-item key="channels">
+        <ShoppingCartOutlined />
+
+        <router-link to="/cp1/channels" class="member_menu menu_course">Channels</router-link>
+      </a-menu-item>
+    </a-menu>
+    <div class="my-4" style="height: 400px"></div>
+  </a-layout-sider>
+</template>
+
+<script lang="ts">
+import {
+  Menu as AMenu,
+  Layout as ALayout,
+  Button as AButton,
+} from 'ant-design-vue'
+import { default as AIcon } from '@ant-design/icons-vue'
+import {
+  DollarOutlined,
+  ShoppingCartOutlined,
+  MenuUnfoldOutlined,
+  SmileOutlined,
+  CloudDownloadOutlined,
+  IdcardOutlined,
+  ReadOutlined,
+  UserOutlined,
+  FilterOutlined,
+  ShopOutlined,
+  SettingOutlined,
+  ShopOutlined,
+  LogoutOutlined,
+} from '@ant-design/icons-vue'
+
+const ALayoutSider = ALayout.Sider
+const AMenuItem = AMenu.Item
+const ASubMenu = AMenu.SubMenu
+
+export default {
+  components: {
+    AMenu,
+    AMenuItem,
+    ASubMenu,
+    AIcon,
+    ALayout,
+    ALayoutSider,
+    AButton,
+    DollarOutlined,
+    ShoppingCartOutlined,
+    MenuUnfoldOutlined,
+    SmileOutlined,
+    CloudDownloadOutlined,
+    IdcardOutlined,
+    ReadOutlined,
+    UserOutlined,
+    FilterOutlined,
+    ShopOutlined,
+    SettingOutlined,
+    LogoutOutlined,
+  },
+
+  data() {
+    const openMenus: string[] = []
+    let selectedMenus: string[] = []
+    console.log('this.$route.name', this.$route)
+    switch (this.$route.name) {
+      case 'cp1-users':
+        selectedMenus.push('users')
+        break
+      default:
+        if (this.$route.name) {
+          const name = this.$route.name as string
+          selectedMenus.push(name.substring(4, name.length))
+        }
+    }
+
+    console.log('name: ', this.$route.name, openMenus, selectedMenus)
+    return {
+      theme: 'dark', //'light',
+      openMenus,
+      selectedMenus,
+    }
+  },
+
+  computed: {
+    ...mapState('env', ['sidebarCollapsed']),
+    ...mapState('session', ['currentUser']),
+  },
+
+  watch: {
+    openMenus(val) {
+      console.log('openMenus', val)
+    },
+  },
+
+  methods: {
+    menuClick(e) {
+      // console.log('click menu', e)
+      this.selectedMenus = e.keyPath
+    },
+    ...mapActions('session', ['logout']),
+  },
+}
+</script>
+
+<style lang="scss">
+.profile {
+  text-align: center;
+}
+
+.ant-layout-sider-collapsed {
+  .profile {
+    .info {
+      visibility: hidden;
+      height: 10px;
+    }
+  }
+}
+</style>

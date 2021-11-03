@@ -1,0 +1,30 @@
+{
+	"table": {
+		"__comment": "start of table fields - do not delete",
+		"process": {
+			"name": "What is the name of the taskflow process?",
+			"description": "Describe the taskflow process"
+		},
+		"_empty": "No records."
+	},
+	"form": {
+		"filebrowser-guide": "Double click on a directory to navigate into directory or double click on file to select a file",
+		"select-country": "Select a country",
+		"saved": "Record has been saved",
+		"uploaded": "File uploaded"
+	},
+	"action": {
+		"confirm_delete": "Confirm delete?",
+		"use_directory": "Use this directory",
+		"cancel": "Cancel"
+	},
+	"error": {
+		"unauthorized": "Unauthorized access",
+		"access_denied": "Access denied",
+		"session_missing": "Session missing",
+		"exists-relation": "Record in use, relation exists",
+		"form-empty": "Please fill in the form",
+		"update-empty": "No changes detected",
+		"validation-failed": "Validation failed"
+	}
+}

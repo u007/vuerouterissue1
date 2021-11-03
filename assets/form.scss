@@ -1,0 +1,13 @@
+.ant-form-item {
+  margin-bottom: 2px;
+}
+
+.ant-col {
+  > label {
+    @apply text-gray-400;
+  }
+}
+
+.innerContent {
+  @apply p-4 bg-gray-100;
+}

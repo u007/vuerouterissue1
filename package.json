@@ -1,0 +1,48 @@
+{
+  "scripts": {
+    "dev": "npm run server",
+    "prod": "npm run build && npm run server:prod",
+    "build": "vite build && vite build --ssr",
+    "server": "ts-node ./server",
+    "server:prod": "cross-env NODE_ENV=production ts-node ./server"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "@ant-design/icons-vue": "^6.0.1",
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.11.6",
+    "@vitejs/plugin-vue": "^1.9.4",
+    "@vue/compiler-sfc": "^3.2.20",
+    "@vue/server-renderer": "^3.2.20",
+    "ant-design-vue": "^2.2.8",
+    "cross-env": "^7.0.3",
+    "daisyui": "^1.16.0",
+    "date-fns": "^2.25.0",
+    "express": "^4.17.1",
+    "firebase": "^8.10.0",
+    "ky": "^0.28.6",
+    "pinia": "^2.0.0",
+    "realm-web": "^1.4.0",
+    "typescript": "^4.4.4",
+    "vite": "2.6.13",
+    "vite-plugin-ssr": "^0.3.20",
+    "vite-plugin-ts": "^1.1.8",
+    "vue": "^3.2.20",
+    "vue-i18n": "^8.26.5",
+    "vue-router": "^4.0.12"
+  },
+  "// Needed for Yarn workspaces": "",
+  "name": "boilerplate-vue-ts",
+  "version": "0.0.0",
+  "devDependencies": {
+    "@intlify/vite-plugin-vue-i18n": "^2.5.0",
+    "@rollup/plugin-eslint": "^8.0.1",
+    "less": "^4.1.2",
+    "postcss-windicss": "^1.0.0",
+    "sass": "^1.43.4",
+    "ts-node": "^10.4.0",
+    "vite-plugin-style-import": "^1.2.1",
+    "vite-plugin-windicss": "^1.4.12",
+    "windicss": "^3.2.1"
+  }
+}
